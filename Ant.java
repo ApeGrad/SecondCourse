@@ -116,7 +116,7 @@ public class Ant {
     }
 
     static void printAntWorld(String[][] array) {
-        System.out.println(currentColor + " is current color" );
+        System.out.println(currentColor + " is current color");
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 if (i == getVerticalX() && j == getHorizontalY()) {
@@ -147,21 +147,9 @@ public class Ant {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 System.out.print(array[i][j] + "|");
-                }
-            System.out.println();
             }
-
-
-
+            System.out.println();
         }
-
-
-
-    static void position(int verticalX, int horizontalY, String currentDirection) {
-        Ant.verticalX = verticalX;
-        Ant.horizontalY = horizontalY;
-        Ant.currentDirection = currentDirection;
-
 
     }
 
@@ -174,76 +162,74 @@ public class Ant {
             array[getVerticalX()][getHorizontalY()] = reverseColor();
             currentColor = array[getVerticalX()][getHorizontalY()];
             setVerticalX(getVerticalX());
-            setHorizontalY(getHorizontalY()+1);
+            setHorizontalY(getHorizontalY() + 1);
             return;
         }
         if (currentColor.equals(colorWhite) && currentDirection.equals(westDirection)) {
             setCurrentDirection(defaultDirection);
-            array[getVerticalX()+1][getHorizontalY()] = ant;
+            array[getVerticalX() + 1][getHorizontalY()] = ant;
             array[getVerticalX()][getHorizontalY()] = reverseColor();
             currentColor = array[getVerticalX()][getHorizontalY()];
-            setVerticalX(getVerticalX()+1);
+            setVerticalX(getVerticalX() + 1);
             setHorizontalY(getHorizontalY());
             return;
         }
         if (currentColor.equals(colorWhite) && currentDirection.equals(eastDirection)) {
             setCurrentDirection(southDirection);
-            array[getVerticalX()+1][getHorizontalY()] = ant;
+            array[getVerticalX() + 1][getHorizontalY()] = ant;
             array[getVerticalX()][getHorizontalY()] = reverseColor();
             currentColor = array[getVerticalX()][getHorizontalY()];
-            setVerticalX(getVerticalX()+1);
+            setVerticalX(getVerticalX() + 1);
             setHorizontalY(getHorizontalY());
             return;
         }
         if (currentColor.equals(colorWhite) && currentDirection.equals(southDirection)) {
             setCurrentDirection(westDirection);
-            array[getVerticalX()][getHorizontalY()-1] = ant;
+            array[getVerticalX()][getHorizontalY() - 1] = ant;
             array[getVerticalX()][getHorizontalY()] = reverseColor();
             currentColor = array[getVerticalX()][getHorizontalY()];
             setVerticalX(getVerticalX());
-            setHorizontalY(getHorizontalY()-1);
+            setHorizontalY(getHorizontalY() - 1);
             return;
         }
         if (currentColor.equals(colorBlack) && currentDirection.equals(defaultDirection)) {
             setCurrentDirection(eastDirection);
-            array[getVerticalX()][getHorizontalY()+1] = ant;
+            array[getVerticalX()][getHorizontalY() + 1] = ant;
             array[getVerticalX()][getHorizontalY()] = reverseColor();
             currentColor = array[getVerticalX()][getHorizontalY()];
             setVerticalX(getVerticalX());
-            setHorizontalY(getHorizontalY()+1);
+            setHorizontalY(getHorizontalY() + 1);
             return;
         }
         if (currentColor.equals(colorBlack) && currentDirection.equals(westDirection)) {
             setCurrentDirection(defaultDirection);
-            array[getVerticalX()+1][getHorizontalY()] = ant;
+            array[getVerticalX() + 1][getHorizontalY()] = ant;
             array[getVerticalX()][getHorizontalY()] = reverseColor();
             currentColor = array[getVerticalX()][getHorizontalY()];
-            setVerticalX(getVerticalX()+1);
+            setVerticalX(getVerticalX() + 1);
             setHorizontalY(getHorizontalY());
 
             return;
         }
         if (currentColor.equals(colorBlack) && currentDirection.equals(eastDirection)) {
             setCurrentDirection(southDirection);
-            array[getVerticalX()-1][getHorizontalY()] = ant;
+            array[getVerticalX() - 1][getHorizontalY()] = ant;
             array[getVerticalX()][getHorizontalY()] = reverseColor();
             currentColor = array[getVerticalX()][getHorizontalY()];
-            setVerticalX(getVerticalX()-1);
+            setVerticalX(getVerticalX() - 1);
             setHorizontalY(getHorizontalY());
             return;
         }
         if (currentColor.equals(colorBlack) && currentDirection.equals(southDirection)) {
             setCurrentDirection(westDirection);
-            array[getVerticalX()][getHorizontalY()-1] = ant;
+            array[getVerticalX()][getHorizontalY() - 1] = ant;
             array[getVerticalX()][getHorizontalY()] = reverseColor();
             currentColor = array[getVerticalX()][getHorizontalY()];
             setVerticalX(getVerticalX());
-            setHorizontalY(getHorizontalY()-1);
+            setHorizontalY(getHorizontalY() - 1);
             return;
         }
     }
-
-
 
 
     static String reverseColor() {
