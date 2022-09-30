@@ -27,7 +27,7 @@ public class Ant {
     public static void setCurrentDirection(String currentDirection) {
         Ant.currentDirection = currentDirection;
     }
-    
+
     public static int getVerticalX() {
         return verticalX;
     }
@@ -46,7 +46,7 @@ public class Ant {
 
 
     public static void main(String[] args) {
-        System.out.println("Введите индекс с которого хотите начать движение: ");
+        System.out.println("Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ СЃ РєРѕС‚РѕСЂРѕРіРѕ С…РѕС‚РёС‚Рµ РЅР°С‡Р°С‚СЊ РґРІРёР¶РµРЅРёРµ: ");
         printNewField(world);
         boolean userType = true;
         while(userType) {
@@ -60,10 +60,10 @@ public class Ant {
                 printAntWorld(world);
                 userType = false;
             } else {
-                System.out.println("Неправильный индекс");
+                System.out.println("РќРµРїСЂР°РІРёР»СЊРЅС‹Р№ РёРЅРґРµРєСЃ");
             }
         }
-        System.out.println("Введите количество шагов: ");
+        System.out.println("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ С€Р°РіРѕРІ: ");
         int steps = scan.nextInt();
         for (int i = 0; i < steps; i++) {
             steps(world);
@@ -197,7 +197,7 @@ public class Ant {
                 setHorizontalY(getHorizontalY() + 1);
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("\nМуравей покинул поле");
+            System.out.println("\nРњСѓСЂР°РІРµР№ РїРѕРєРёРЅСѓР» РїРѕР»Рµ");
             System.exit(0);
         }
     }
