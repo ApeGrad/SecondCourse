@@ -6,7 +6,7 @@ import java.util.SplittableRandom;
 public class Ant {
     static Scanner scan = new Scanner(System.in);
 
-    static String[][] world = new String[5][5];
+    static String[][] world = new String[10][10];
 
     static int verticalX;
     static int horizontalY;
@@ -17,6 +17,7 @@ public class Ant {
     static String colorBlack = "B";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
     static String ant = "@";
     static String defaultDirection = "NORTH";
     static String southDirection = "SOUTH";
@@ -26,16 +27,7 @@ public class Ant {
     public static void setCurrentDirection(String currentDirection) {
         Ant.currentDirection = currentDirection;
     }
-
-    public static String getAnt() {
-        return ant;
-    }
-
-    public static void setAnt(String ant) {
-        Ant.ant = ant;
-    }
-
-
+    
     public static int getVerticalX() {
         return verticalX;
     }
@@ -52,13 +44,6 @@ public class Ant {
         Ant.horizontalY = horizontalY;
     }
 
-    public static String getColorWhite() {
-        return colorWhite;
-    }
-
-    public static String getColorBlack() {
-        return colorBlack;
-    }
 
     public static void main(String[] args) {
         System.out.println("¬ведите индекс с которого хотите начать движение: ");
@@ -69,8 +54,7 @@ public class Ant {
             horizontalY = scan.nextInt();
             if (verticalX < world.length && verticalX >= 0 && horizontalY < world.length && horizontalY >= 0) {
                 currentColor = world[verticalX][horizontalY];
-                world[verticalX][horizontalY] = getAnt();
-                setAnt(ant);
+                world[verticalX][horizontalY] = ant;
                 setVerticalX(verticalX);
                 setHorizontalY(horizontalY);
                 printAntWorld(world);
@@ -85,44 +69,40 @@ public class Ant {
             steps(world);
         }
     }
-
     public static void printNewField(String[][] array) {
         SplittableRandom random = new SplittableRandom();
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 if (random.nextBoolean() == true) {
-                    array[i][j] = getColorWhite();
+                    array[i][j] = colorWhite;
                 } else {
-                    array[i][j] = getColorBlack();
+                    array[i][j] = colorBlack;
                 }
-                System.out.print(array[i][j] + "|");
+                System.out.print( " " + array[i][j] + " ");
             }
             System.out.println();
         }
     }
-
     static void printAntWorld(String[][] array) {
         System.out.println(currentColor + " is current color");
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
                 if (i == getVerticalX() && j == getHorizontalY()) {
                     setCurrentDirection(defaultDirection);
-                    array[i][j] = ANSI_RED +  ant + ANSI_RESET;
-                    setAnt(ant);
+                    array[i][j] =ANSI_BLACK_BACKGROUND + ANSI_RED +  ant + ANSI_RESET;
                 }
-                System.out.print(array[i][j] + "|");
+                System.out.print(" " + array[i][j] + " ");
             }
             System.out.println();
         }
     }
-
     static void steps(String[][] array) {
         System.out.println(currentColor + " is current color");
         System.out.println(currentDirection + " is current direction");
         checkDirection(array);
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j] + "|");
+                System.out.print(" " + array[i][j] + " ");
             }
             System.out.println();
         }
@@ -133,7 +113,7 @@ public class Ant {
                 setCurrentDirection(eastDirection);
                 previousColor = currentColor;
                 currentColor = array[getVerticalX()][getHorizontalY() + 1];
-                array[getVerticalX()][getHorizontalY() + 1] = ANSI_RED +  ant + ANSI_RESET;
+                array[getVerticalX()][getHorizontalY() + 1] =ANSI_BLACK_BACKGROUND + ANSI_RED +  ant + ANSI_RESET;
                 array[getVerticalX()][getHorizontalY()] = reverseColor();
                 previousColor = array[getVerticalX()][getHorizontalY()];
                 setVerticalX(getVerticalX());
@@ -144,7 +124,7 @@ public class Ant {
                 setCurrentDirection(defaultDirection);
                 previousColor = currentColor;
                 currentColor = array[getVerticalX() - 1][getHorizontalY()];
-                array[getVerticalX() - 1][getHorizontalY()] = ANSI_RED +  ant + ANSI_RESET;
+                array[getVerticalX() - 1][getHorizontalY()] = ANSI_BLACK_BACKGROUND +ANSI_RED +  ant + ANSI_RESET;
                 array[getVerticalX()][getHorizontalY()] = reverseColor();
                 previousColor = array[getVerticalX()][getHorizontalY()];
                 setVerticalX(getVerticalX() - 1);
@@ -155,7 +135,7 @@ public class Ant {
                 setCurrentDirection(southDirection);
                 previousColor = currentColor;
                 currentColor = array[getVerticalX() + 1][getHorizontalY()];
-                array[getVerticalX() + 1][getHorizontalY()] = ANSI_RED +  ant + ANSI_RESET;
+                array[getVerticalX() + 1][getHorizontalY()] =ANSI_BLACK_BACKGROUND + ANSI_RED +  ant + ANSI_RESET;
                 array[getVerticalX()][getHorizontalY()] = reverseColor();
                 previousColor = array[getVerticalX()][getHorizontalY()];
                 setVerticalX(getVerticalX() + 1);
@@ -166,7 +146,7 @@ public class Ant {
                 setCurrentDirection(westDirection);
                 previousColor = currentColor;
                 currentColor = array[getVerticalX()][getHorizontalY() - 1];
-                array[getVerticalX()][getHorizontalY() - 1] = ANSI_RED +  ant + ANSI_RESET;
+                array[getVerticalX()][getHorizontalY() - 1] =ANSI_BLACK_BACKGROUND + ANSI_RED +  ant + ANSI_RESET;
                 array[getVerticalX()][getHorizontalY()] = reverseColor();
                 previousColor = array[getVerticalX()][getHorizontalY()];
                 setVerticalX(getVerticalX());
@@ -177,7 +157,7 @@ public class Ant {
                 setCurrentDirection(westDirection);
                 previousColor = currentColor;
                 currentColor = array[getVerticalX()][getHorizontalY() - 1];
-                array[getVerticalX()][getHorizontalY() - 1] = ANSI_RED +  ant + ANSI_RESET;
+                array[getVerticalX()][getHorizontalY() - 1] =ANSI_BLACK_BACKGROUND + ANSI_RED +  ant + ANSI_RESET;
                 array[getVerticalX()][getHorizontalY()] = reverseColor();
                 previousColor = array[getVerticalX()][getHorizontalY()];
                 setVerticalX(getVerticalX());
@@ -188,7 +168,7 @@ public class Ant {
                 setCurrentDirection(southDirection);
                 previousColor = currentColor;
                 currentColor = array[getVerticalX() + 1][getHorizontalY()];
-                array[getVerticalX() + 1][getHorizontalY()] = ANSI_RED +  ant + ANSI_RESET;
+                array[getVerticalX() + 1][getHorizontalY()] =ANSI_BLACK_BACKGROUND + ANSI_RED +  ant + ANSI_RESET;
                 array[getVerticalX()][getHorizontalY()] = reverseColor();
                 previousColor = array[getVerticalX()][getHorizontalY()];
                 setVerticalX(getVerticalX() + 1);
@@ -199,7 +179,7 @@ public class Ant {
                 setCurrentDirection(defaultDirection);
                 previousColor = currentColor;
                 currentColor = array[getVerticalX() - 1][getHorizontalY()];
-                array[getVerticalX() - 1][getHorizontalY()] = ANSI_RED +  ant + ANSI_RESET;
+                array[getVerticalX() - 1][getHorizontalY()] =ANSI_BLACK_BACKGROUND + ANSI_RED +  ant + ANSI_RESET;
                 array[getVerticalX()][getHorizontalY()] = reverseColor();
                 previousColor = array[getVerticalX()][getHorizontalY()];
                 setVerticalX(getVerticalX() - 1);
@@ -210,7 +190,7 @@ public class Ant {
                 previousColor = currentColor;
                 setCurrentDirection(eastDirection);
                 currentColor = array[getVerticalX()][getHorizontalY() + 1];
-                array[getVerticalX()][getHorizontalY() + 1] = ANSI_RED +  ant + ANSI_RESET;
+                array[getVerticalX()][getHorizontalY() + 1] =ANSI_BLACK_BACKGROUND + ANSI_RED +  ant + ANSI_RESET;
                 array[getVerticalX()][getHorizontalY()] = reverseColor();
                 previousColor = array[getVerticalX()][getHorizontalY()];
                 setVerticalX(getVerticalX());
@@ -222,10 +202,10 @@ public class Ant {
         }
     }
     static String reverseColor() {
-        if (previousColor.equals(getColorWhite())) {
-            return world[verticalX][horizontalY] = getColorBlack();
+        if (previousColor.equals(colorWhite)) {
+            return world[verticalX][horizontalY] = colorBlack;
         } else {
-            return world[verticalX][horizontalY] = getColorWhite();
+            return world[verticalX][horizontalY] = colorWhite;
         }
     }
 }
